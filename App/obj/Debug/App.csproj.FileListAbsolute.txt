@@ -1,0 +1,12 @@
+c:\users\lickett2019\source\repos\App\App\bin\Debug\App.exe.config
+c:\users\lickett2019\source\repos\App\App\bin\Debug\App.exe
+c:\users\lickett2019\source\repos\App\App\bin\Debug\App.pdb
+c:\users\lickett2019\source\repos\App\App\obj\Debug\App.csprojAssemblyReference.cache
+c:\users\lickett2019\source\repos\App\App\obj\Debug\App.AuthForm.resources
+c:\users\lickett2019\source\repos\App\App\obj\Debug\App.Properties.Resources.resources
+c:\users\lickett2019\source\repos\App\App\obj\Debug\App.RegForm.resources
+c:\users\lickett2019\source\repos\App\App\obj\Debug\App.csproj.GenerateResource.cache
+c:\users\lickett2019\source\repos\App\App\obj\Debug\App.csproj.CoreCompileInputs.cache
+c:\users\lickett2019\source\repos\App\App\obj\Debug\App.exe
+c:\users\lickett2019\source\repos\App\App\obj\Debug\App.pdb
+C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.UserForm.resources
