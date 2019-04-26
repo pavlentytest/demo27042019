@@ -57,24 +57,34 @@ namespace App
             switch (role)
             {
                 case "User":
-                    form = new UserForm();                   
+                    form = new UserForm();
+                    this.Hide();
+                    form.Show();
+
                     break;
                 case "Director":
-                    form = new AdminForm();               
+                    form = new AdminForm();
+                    this.Hide();
+                    form.Show();
+
                     break;
                 case "Ware":
-                    form = new WareForm();     
+                    form = new WareForm();
+                    this.Hide();
+                    form.Show();
+
                     break;
                 case "Manager":
-                    form = new ManagerForm();                 
-                    break;                                          
-            }           
-            this.Hide();
-            form.Show();
+                    form = new ManagerForm();
+                    this.Hide();
+                    form.Show();
 
+                    break;
+                default:
+                    MessageBox.Show("Роль не установлена или пользователь не найден!");
+                    break;
 
-
-
+            }
         }
     }
 }
