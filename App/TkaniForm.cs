@@ -14,26 +14,26 @@ namespace App
 {
     public partial class TkaniForm : Form
     {
-
         SqlConnection connection = new SqlConnection(Properties.Settings.Default.dbConnectionSettings);
-
         WareForm ware;
-
+        DataSet ds;
+        SqlDataAdapter sda;
+        DataSet changes;
 
         public TkaniForm()
         {
             InitializeComponent();
         }
 
-        private void TkaniForm_Load(object sender, EventArgs e)
+        public void LoadList()
         {
-           String query = "SELECT * FROM tkani";
-           SqlDataAdapter sda = new SqlDataAdapter(query, connection);
-           DataSet ds = new DataSet();
-           sda.Fill(ds, "tkani");
-           dataGridView1.DataSource = ds.Tables["tkani"];
+            String query = "SELECT * FROM tkani";
+            sda = new SqlDataAdapter(query, connection);
+            ds = new DataSet();
+            sda.Fill(ds, "tkani");
+            dataGridView1.DataSource = ds.Tables["tkani"];
 
-           DataGridViewImageColumn img = new DataGridViewImageColumn();
+            DataGridViewImageColumn img = new DataGridViewImageColumn();
             img.Name = "img";
             img.HeaderText = "Картинка";
             dataGridView1.Columns.Add(img);
@@ -51,12 +51,17 @@ namespace App
                     }
                     else
                     {
-                        image = Image.FromFile(basePath+"empty.jpg");
+                        image = Image.FromFile(basePath + "empty.jpg");
                     }
                     dataGridView1.Rows[i].Cells["img"].Value = image;
                 }
             }
-           
+        }
+
+        private void TkaniForm_Load(object sender, EventArgs e)
+        {
+
+            this.LoadList();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,6 +69,30 @@ namespace App
             this.Close();
             ware = new WareForm();
             ware.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            changes = ds.GetChanges();
+            if (changes != null)
+            {
+                SqlCommandBuilder builder = new SqlCommandBuilder(sda);
+                builder.GetInsertCommand();
+                int updatesRows = sda.Update(changes,"tkani");
+                ds.AcceptChanges();
+            }
+            this.LoadList();
+            MessageBox.Show("Успешно!");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow items in dataGridView1.SelectedRows)
+            {
+                dataGridView1.Rows.RemoveAt(items.Index);
+              
+            }
+            this.button2_Click(sender,e);
         }
     }
 }

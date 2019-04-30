@@ -34,5 +34,15 @@ namespace App.Properties {
                 this["dbConnectionSettings"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=Instance-1;Initial Catalog=test2;User ID=sa;Password=tesT900")]
+        public string test2ConnectionString {
+            get {
+                return ((string)(this["test2ConnectionString"]));
+            }
+        }
     }
 }

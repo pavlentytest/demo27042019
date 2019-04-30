@@ -16,5 +16,12 @@ namespace App
         {
             InitializeComponent();
         }
+
+        private void FurnituraForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'test2DataSet.furniture' table. You can move, or remove it, as needed.
+            this.furnitureTableAdapter.Fill(this.test2DataSet.furniture);
+
+        }
     }
 }

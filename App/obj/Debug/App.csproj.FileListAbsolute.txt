@@ -12,3 +12,4 @@ c:\users\lickett2019\source\repos\App\App\obj\Debug\App.pdb
 C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.UserForm.resources
 C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.TkaniForm.resources
 C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.WareForm.resources
+C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.FurnituraForm.resources
