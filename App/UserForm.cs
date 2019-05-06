@@ -37,5 +37,16 @@ namespace App
             img.Name = "img";
 
         }
+
+        private void cgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void конструкторToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form constr = new ConstructorForm();
+            constr.Show();
+        }
     }
 }

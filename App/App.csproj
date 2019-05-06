@@ -58,11 +58,23 @@
     <Compile Include="AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConstructorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConstructorForm.Designer.cs">
+      <DependentUpon>ConstructorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FurnituraForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FurnituraForm.Designer.cs">
       <DependentUpon>FurnituraForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IzdelieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IzdelieForm.Designer.cs">
+      <DependentUpon>IzdelieForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagerForm.cs">
       <SubType>Form</SubType>
@@ -82,6 +94,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>test2DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="test2DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>test2DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="TkaniForm.cs">
       <SubType>Form</SubType>
@@ -103,6 +120,9 @@
     </Compile>
     <EmbeddedResource Include="AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConstructorForm.resx">
+      <DependentUpon>ConstructorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FurnituraForm.resx">
       <DependentUpon>FurnituraForm.cs</DependentUpon>
@@ -147,6 +167,17 @@
     </None>
     <None Include="test2DataSet.xss">
       <DependentUpon>test2DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="test2DataSet1.xsc">
+      <DependentUpon>test2DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="test2DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>test2DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="test2DataSet1.xss">
+      <DependentUpon>test2DataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

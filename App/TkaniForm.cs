@@ -82,15 +82,17 @@ namespace App
                 ds.AcceptChanges();
             }
             this.LoadList();
-            MessageBox.Show("Успешно!");
+            
+
+            MessageBox.Show("Успешно!", "Заголовок", MessageBoxButtons.OKCancel);
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             foreach(DataGridViewRow items in dataGridView1.SelectedRows)
             {
-                dataGridView1.Rows.RemoveAt(items.Index);
-              
+                dataGridView1.Rows.RemoveAt(items.Index);              
             }
             this.button2_Click(sender,e);
         }
