@@ -46,9 +46,14 @@
             this.test2DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.furnitureBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.furnitureTableAdapter = new App.test2DataSetTableAdapters.furnitureTableAdapter();
+            this.test2DataSet2 = new App.test2DataSet2();
+            this.tkaniBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tkaniTableAdapter = new App.test2DataSet2TableAdapters.tkaniTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.test2DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.test2DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.furnitureBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.test2DataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tkaniBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -79,11 +84,14 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DataSource = this.tkaniBindingSource;
+            this.comboBox1.DisplayMember = "Название";
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(30, 103);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(156, 21);
             this.comboBox1.TabIndex = 3;
+            this.comboBox1.ValueMember = "ID";
             // 
             // label3
             // 
@@ -182,6 +190,20 @@
             // 
             this.furnitureTableAdapter.ClearBeforeFill = true;
             // 
+            // test2DataSet2
+            // 
+            this.test2DataSet2.DataSetName = "test2DataSet2";
+            this.test2DataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tkaniBindingSource
+            // 
+            this.tkaniBindingSource.DataMember = "tkani";
+            this.tkaniBindingSource.DataSource = this.test2DataSet2;
+            // 
+            // tkaniTableAdapter
+            // 
+            this.tkaniTableAdapter.ClearBeforeFill = true;
+            // 
             // ConstructorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +228,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.test2DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.test2DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.furnitureBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.test2DataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tkaniBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,5 +254,8 @@
         private test2DataSet test2DataSet;
         private System.Windows.Forms.BindingSource furnitureBindingSource;
         private test2DataSetTableAdapters.furnitureTableAdapter furnitureTableAdapter;
+        private test2DataSet2 test2DataSet2;
+        private System.Windows.Forms.BindingSource tkaniBindingSource;
+        private test2DataSet2TableAdapters.tkaniTableAdapter tkaniTableAdapter;
     }
 }

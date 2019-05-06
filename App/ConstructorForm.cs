@@ -43,11 +43,15 @@ namespace App
 
         private void ConstructorForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'test2DataSet.furniture' table. You can move, or remove it, as needed.
+            // заполнение Combobox1 - списком из таблицы Ткани
+            this.tkaniTableAdapter.Fill(this.test2DataSet2.tkani);
+
+            // заполнение Combobox2 - списком из таблицы Фурнитуры
             this.furnitureTableAdapter.Fill(this.test2DataSet.furniture);
-            fillCombos();
+           
         }
 
+        /*
         public void fillCombos()
         {
             String sql = "SELECT id, название, цвет, цена FROM tkani";
@@ -66,12 +70,34 @@ namespace App
             comboBox1.DataSource = listoftkani;
             comboBox1.DisplayMember = "название";
             reader.Close();
-
         }
+        */
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String value = comboBox2.SelectedValue.ToString();
+            // выбранный идентификатор фурнитуры
+            int selected_furniture = Convert.ToInt32(comboBox2.SelectedValue);
+            // выбранный идентификатор ткани
+            int selected_tkani = Convert.ToInt32(comboBox1.SelectedValue);
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("INSERT INTO izdelie (Наименование, Длина, Ширина) " +
+                    "VALUES (@name,@width,@height); SELECT SCOPE_IDENTITY(); ", connection);
+                command.Parameters.AddWithValue("@name", textBox1.Text);
+                command.Parameters.AddWithValue("@width", textBox2.Text);
+                command.Parameters.AddWithValue("@height", textBox3.Text);
+                
+                int izdelie = Convert.ToInt32(command.ExecuteScalar());
+                connection.Close();
+          
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка !\n");
+
+            }
 
         }
     }
