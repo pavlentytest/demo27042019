@@ -48,5 +48,10 @@ namespace App
             Form constr = new ConstructorForm();
             constr.Show();
         }
+
+        private void заказыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

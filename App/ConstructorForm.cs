@@ -80,9 +80,13 @@ namespace App
             // выбранный идентификатор ткани
             int selected_tkani = Convert.ToInt32(comboBox1.SelectedValue);
 
+          
+
             try
             {
                 connection.Open();
+                Random random = new Random();
+                String artikul = "User-" + random.Next(1000000);
                 SqlCommand command = new SqlCommand("INSERT INTO izdelie (Наименование, Длина, Ширина) " +
                     "VALUES (@name,@width,@height); SELECT SCOPE_IDENTITY(); ", connection);
                 command.Parameters.AddWithValue("@name", textBox1.Text);
@@ -90,9 +94,23 @@ namespace App
                 command.Parameters.AddWithValue("@height", textBox3.Text);
                 
                 int izdelie = Convert.ToInt32(command.ExecuteScalar());
+
+                SqlCommand command1 = new SqlCommand("INSERT INTO furniture_izdelie (furniture_id, izdelie_id, razmeshenie, width, length, turn, counter) " +
+                   "VALUES ("+ selected_furniture + "," + izdelie + ", 0, 0, 0, 0, 0);", connection);
+                command1.ExecuteScalar();
+
+                SqlCommand command2 = new SqlCommand("INSERT INTO tkani_izdelie (tkani_id, izdelie_id) " +
+                  "VALUES (" + selected_tkani + "," + izdelie + ");", connection);
+                command2.ExecuteScalar();
+
+                MessageBox.Show("Изделие успешно добавлено");
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+
                 connection.Close();
           
-            }
+           }
             catch
             {
                 MessageBox.Show("Ошибка !\n");
@@ -100,5 +118,38 @@ namespace App
             }
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DataRowView item = (DataRowView)comboBox1.SelectedItem;
+            MessageBox.Show(item.Row.ItemArray[3].ToString());
+            Draw();
+        }
+
+        private void Draw()
+        {
+          
+            if(textBox2.Text.Trim().Length == 0 || textBox3.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Введите размеры изделия!");
+            }  else
+            {
+                Graphics g = panel1.CreateGraphics();
+                g.Clear(Color.White);
+                Pen p = new Pen(Color.Black, 1);
+                int w = Convert.ToInt32(textBox2.Text.Trim());
+                int h = Convert.ToInt32(textBox3.Text.Trim());
+                g.DrawRectangle(p, 10, 10, w, h);
+            }
+            
+
+        }
+
     }
 }
