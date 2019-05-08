@@ -127,8 +127,8 @@ namespace App
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DataRowView item = (DataRowView)comboBox1.SelectedItem;
-            MessageBox.Show(item.Row.ItemArray[3].ToString());
+            //DataRowView item = (DataRowView)comboBox1.SelectedItem;
+            //MessageBox.Show(item.Row.ItemArray[3].ToString());
             Draw();
         }
 
@@ -146,10 +146,55 @@ namespace App
                 int w = Convert.ToInt32(textBox2.Text.Trim());
                 int h = Convert.ToInt32(textBox3.Text.Trim());
                 g.DrawRectangle(p, 10, 10, w, h);
+
+                DataRowView item = (DataRowView)comboBox1.SelectedItem;
+                String color = item.Row.ItemArray[3].ToString();
+                String ris = item.Row.ItemArray[4].ToString();
+                Brush brush;
+                if (ris.Contains("jpg"))
+                {
+                    Image img = Image.FromFile(ris);
+                    Bitmap bimage = new Bitmap(img);
+                    TextureBrush tb = new TextureBrush(bimage);
+                    g.FillRectangle(tb, 11, 11, w - 1, h - 1);
+                }
+                else
+                {
+                    switch (color)
+                    {
+                        case "красный":
+                            brush = new SolidBrush(Color.Red);
+                            g.FillRectangle(brush, 11, 11, w - 1, h - 1);
+                            break;
+                        case "зеленый":
+                            brush = new SolidBrush(Color.FromArgb(255, 0, 255, 0));
+                            g.FillRectangle(brush, 11, 11, w - 1, h - 1);
+                            break;
+                        default:
+                            brush = new SolidBrush(Color.White);
+                            g.FillRectangle(brush, 11, 11, w - 1, h - 1);
+                            break;
+                    }
+                }
             }
-            
+
 
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form addtkan = new AddTkani();
+            addtkan.Show();
+        }
+
+        private void ConstructorForm_Activated(object sender, EventArgs e)
+        {
+            this.tkaniTableAdapter.Fill(this.test2DataSet2.tkani);
+        }
+
+        private void ConstructorForm_Enter(object sender, EventArgs e)
+        {
+           // MessageBox.Show("1234");
+        }
     }
 }
