@@ -15,3 +15,4 @@ C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.WareForm.resources
 C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.FurnituraForm.resources
 C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.ConstructorForm.resources
 C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.AddTkani.resources
+C:\Users\lickett2019\source\repos\App\App\obj\Debug\App.UserOrderForm.resources

@@ -80,8 +80,6 @@ namespace App
             // выбранный идентификатор ткани
             int selected_tkani = Convert.ToInt32(comboBox1.SelectedValue);
 
-          
-
             try
             {
                 connection.Open();

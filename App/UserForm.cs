@@ -51,7 +51,8 @@ namespace App
 
         private void заказыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form order = new UserOrderForm();
+            order.Show();
         }
     }
 }

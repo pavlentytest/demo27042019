@@ -111,6 +111,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>test2DataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="test2DataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>test2DataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TkaniForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +127,12 @@
     </Compile>
     <Compile Include="UserForm.Designer.cs">
       <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserOrderForm.Designer.cs">
+      <DependentUpon>UserOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WareForm.cs">
       <SubType>Form</SubType>
@@ -158,6 +169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserOrderForm.resx">
+      <DependentUpon>UserOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WareForm.resx">
       <DependentUpon>WareForm.cs</DependentUpon>
@@ -203,6 +217,17 @@
     </None>
     <None Include="test2DataSet2.xss">
       <DependentUpon>test2DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="test2DataSet3.xsc">
+      <DependentUpon>test2DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="test2DataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>test2DataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="test2DataSet3.xss">
+      <DependentUpon>test2DataSet3.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
