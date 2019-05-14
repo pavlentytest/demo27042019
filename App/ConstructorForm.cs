@@ -22,10 +22,10 @@ namespace App
              
             public Tkani (int i, string n, string c, double p)
             {
-                this.id = i;
-                this.название = n;
-                this.цвет = c;
-                this.цена = p;
+                id = i;
+                название = n;
+                цвет = c;
+                цена = p;
             }
         }
 
@@ -44,10 +44,10 @@ namespace App
         private void ConstructorForm_Load(object sender, EventArgs e)
         {
             // заполнение Combobox1 - списком из таблицы Ткани
-            this.tkaniTableAdapter.Fill(this.test2DataSet2.tkani);
+            tkaniTableAdapter.Fill(test2DataSet2.tkani);
 
             // заполнение Combobox2 - списком из таблицы Фурнитуры
-            this.furnitureTableAdapter.Fill(this.test2DataSet.furniture);
+            furnitureTableAdapter.Fill(test2DataSet.furniture);
            
         }
 
@@ -119,7 +119,7 @@ namespace App
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
 
         }
 
@@ -187,7 +187,7 @@ namespace App
 
         private void ConstructorForm_Activated(object sender, EventArgs e)
         {
-            this.tkaniTableAdapter.Fill(this.test2DataSet2.tkani);
+            tkaniTableAdapter.Fill(test2DataSet2.tkani);
         }
 
         private void ConstructorForm_Enter(object sender, EventArgs e)

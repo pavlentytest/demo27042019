@@ -80,7 +80,7 @@ namespace App
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
             auth = new AuthForm();
             auth.Show();
         }

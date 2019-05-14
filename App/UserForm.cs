@@ -14,10 +14,12 @@ namespace App
     public partial class UserForm : Form
     {
         SqlConnection connection = new SqlConnection(Properties.Settings.Default.dbConnectionSettings);
+        String user = "";
 
-        public UserForm()
+        public UserForm(String u)
         {
             InitializeComponent();
+            this.user = u;
         }
 
         private void UserForm_Load(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace App
 
         private void заказыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form order = new UserOrderForm();
+            Form order = new UserOrderForm(user);
             order.Show();
         }
     }

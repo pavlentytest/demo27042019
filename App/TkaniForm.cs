@@ -61,12 +61,12 @@ namespace App
         private void TkaniForm_Load(object sender, EventArgs e)
         {
 
-            this.LoadList();
+            LoadList();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
             ware = new WareForm();
             ware.Show();
         }
@@ -81,7 +81,7 @@ namespace App
                 int updatesRows = sda.Update(changes,"tkani");
                 ds.AcceptChanges();
             }
-            this.LoadList();
+            LoadList();
             
 
             MessageBox.Show("Успешно!", "Заголовок", MessageBoxButtons.OKCancel);
@@ -94,7 +94,7 @@ namespace App
             {
                 dataGridView1.Rows.RemoveAt(items.Index);              
             }
-            this.button2_Click(sender,e);
+            button2_Click(sender,e);
         }
     }
 }

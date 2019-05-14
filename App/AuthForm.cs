@@ -29,7 +29,7 @@ namespace App
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
+            Hide();
             reg = new RegForm();
             reg.Show();
 
@@ -45,9 +45,11 @@ namespace App
             SqlCommand command = new SqlCommand("SELECT * FROM users WHERE login = '" + login + "' AND password = '" + pass + "'", connection);
             SqlDataReader reader = command.ExecuteReader();
 
-            String role = "", name ="";
+            String role = "", name = "";
+               
             while(reader.Read())
             {
+
                
                 role = reader[2].ToString();
                 name = reader[3].ToString();
@@ -57,26 +59,26 @@ namespace App
             switch (role)
             {
                 case "User":
-                    form = new UserForm();
-                    this.Hide();
+                    form = new UserForm(login);
+                    Hide();
                     form.Show();
 
                     break;
                 case "Director":
                     form = new AdminForm();
-                    this.Hide();
+                    Hide();
                     form.Show();
 
                     break;
                 case "Ware":
                     form = new WareForm();
-                    this.Hide();
+                    Hide();
                     form.Show();
 
                     break;
                 case "Manager":
                     form = new ManagerForm();
-                    this.Hide();
+                    Hide();
                     form.Show();
 
                     break;

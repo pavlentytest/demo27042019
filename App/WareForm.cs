@@ -21,14 +21,14 @@ namespace App
         {
             Form fur = new FurnituraForm();
             fur.Show();
-            this.Close();
+            Close();
         }
 
         private void тканиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form tkani = new TkaniForm();
             tkani.Show();
-            this.Close();
+            Close();
         }
     }
 }
