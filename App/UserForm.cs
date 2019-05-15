@@ -24,6 +24,7 @@ namespace App
 
         private void UserForm_Load(object sender, EventArgs e)
         {
+           // this.user
             String sql = "select * from izdelie";
             SqlDataAdapter sda = new SqlDataAdapter(sql, connection);      
             DataSet ds = new DataSet();          
@@ -53,7 +54,7 @@ namespace App
 
         private void заказыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form order = new UserOrderForm(user);
+            Form order = new UserOrderForm(this.user);
             order.Show();
         }
     }

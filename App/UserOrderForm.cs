@@ -14,10 +14,26 @@ namespace App
     public partial class UserOrderForm : Form
     {
 
+
+        private class Order
+        {
+            // Поля внутреннего класса 
+            // Фактически - это поля из таблицы товаров
+            public int id { get; set; }
+            public int count { get; set; }
+            public double price { get; set; }
+            // Конструктор класса
+            public Order(int i, int c, double p)
+            {
+                this.id = i;
+                this.count = c;
+                this.price = p;
+            }
+        }
         SqlConnection connection = new SqlConnection(Properties.Settings.Default.dbConnectionSettings);
         double total = 0;
         double izdelie_price = 0;
-        List<ComboBox> lst = new List<ComboBox>();
+        List<Order> cart = new List<Order>();
         String user = "";
       
 
@@ -43,15 +59,28 @@ namespace App
 
         private void button4_Click(object sender, EventArgs e)
         {
-         /*   ComboBox combo = new ComboBox();
-            combo.Name = "Combobox" + counter;
-            combo.DataSource = izdelieBindingSource;
-            combo.DisplayMember = "Наименование";
-            combo.SelectedIndexChanged += new EventHandler(this.combo_SelectedIndexChanged);
-            flowLayoutPanel1.Controls.Add(combo);
-            lst.Add(combo);
-            counter++;
-            */
+            cart.Add(new Order(Convert.ToInt32(comboBox1.SelectedValue), Convert.ToInt32(comboBox2.SelectedIndex), total));
+
+            StringBuilder s = new StringBuilder();
+            foreach (Order cart_item in cart)
+            {
+
+
+                s.Append("Изделие:" + cart_item.id + ", Кол-во: "+cart_item.count+", цена:"+cart_item.price );
+                s.Append("\n");
+
+
+            }
+            label8.Text = s.ToString() ;
+            /*   ComoBox combo = new ComboBox();
+               combo.Name = "Combobox" + counter;
+               combo.DataSource = izdelieBindingSource;
+               combo.DisplayMember = "Наименование";
+               combo.SelectedIndexChanged += new EventHandler(this.combo_SelectedIndexChanged);
+               flowLayoutPanel1.Controls.Add(combo);
+               lst.Add(combo);
+               counter++;
+               */
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,7 +148,7 @@ namespace App
                 SqlCommand command = new SqlCommand("INSERT INTO [order] ([date], stage, client, manager, price) " +
                     "VALUES (getdate(),@stage,@client,@manager,@price); SELECT SCOPE_IDENTITY(); ", connection);
                 command.Parameters.AddWithValue("@stage", "Новый");
-                command.Parameters.AddWithValue("@client", user);
+                command.Parameters.AddWithValue("@client", this.user);
                 command.Parameters.AddWithValue("@manager", "manager"); // from users table
                 command.Parameters.AddWithValue("@price", total); // from users table
                 
@@ -128,7 +157,6 @@ namespace App
                 SqlCommand command1 = new SqlCommand("INSERT INTO order_izdelie (order_id, izdelie_id,counter) " +
                    "VALUES (" + order + "," + comboBox1.SelectedValue + ", 1);", connection);
                 command1.ExecuteScalar();
-
                 MessageBox.Show("Ваш заказ N"+ order + "  забронирован!");
                 
                 connection.Close();
