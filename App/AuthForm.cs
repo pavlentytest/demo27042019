@@ -87,6 +87,12 @@ namespace App
                     break;
 
             }
+
+            reader.Close();
+            connection.Close();
+            
         }
+
+
     }
 }

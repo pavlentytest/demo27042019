@@ -45,6 +45,7 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.izdelieBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.test2DataSet3)).BeginInit();
             this.SuspendLayout();
@@ -121,6 +122,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Закрыть";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label4
             // 
@@ -151,9 +153,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(195, 146);
+            this.button4.Location = new System.Drawing.Point(239, 146);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(155, 23);
+            this.button4.Size = new System.Drawing.Size(111, 23);
             this.button4.TabIndex = 11;
             this.button4.Text = "Добавить";
             this.button4.UseVisualStyleBackColor = true;
@@ -186,11 +188,22 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "label8";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(113, 146);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(107, 23);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Удалить";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // UserOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 462);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBox2);
@@ -232,5 +245,6 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button3;
     }
 }

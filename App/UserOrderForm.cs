@@ -19,12 +19,14 @@ namespace App
         {
             // Поля внутреннего класса 
             // Фактически - это поля из таблицы товаров
+            public String name { get; set; }
             public int id { get; set; }
             public int count { get; set; }
             public double price { get; set; }
             // Конструктор класса
-            public Order(int i, int c, double p)
+            public Order(String name, int i, int c, double p)
             {
+                this.name = name;
                 this.id = i;
                 this.count = c;
                 this.price = p;
@@ -35,7 +37,7 @@ namespace App
         double izdelie_price = 0;
         List<Order> cart = new List<Order>();
         String user = "";
-      
+        double order_total = 0;
 
         public UserOrderForm(String u)
         {
@@ -59,28 +61,25 @@ namespace App
 
         private void button4_Click(object sender, EventArgs e)
         {
-            cart.Add(new Order(Convert.ToInt32(comboBox1.SelectedValue), Convert.ToInt32(comboBox2.SelectedIndex), total));
+            DataRowView item = (DataRowView)comboBox1.SelectedItem;
+            String name = item.Row.ItemArray[2].ToString();
+            cart.Add(new Order(name, Convert.ToInt32(comboBox1.SelectedValue), Convert.ToInt32(comboBox2.SelectedIndex), total));
 
+            UpdateCart(cart);         
+        }
+
+        private void UpdateCart(List<Order>  c)
+        {
+            order_total = 0;
             StringBuilder s = new StringBuilder();
-            foreach (Order cart_item in cart)
+            foreach (Order cart_item in c)
             {
-
-
-                s.Append("Изделие:" + cart_item.id + ", Кол-во: "+cart_item.count+", цена:"+cart_item.price );
+                s.Append("Изделие:" + cart_item.name + ", Кол-во: " + cart_item.count + ", цена:" + cart_item.price);
                 s.Append("\n");
-
-
+                order_total += cart_item.price;
             }
-            label8.Text = s.ToString() ;
-            /*   ComoBox combo = new ComboBox();
-               combo.Name = "Combobox" + counter;
-               combo.DataSource = izdelieBindingSource;
-               combo.DisplayMember = "Наименование";
-               combo.SelectedIndexChanged += new EventHandler(this.combo_SelectedIndexChanged);
-               flowLayoutPanel1.Controls.Add(combo);
-               lst.Add(combo);
-               counter++;
-               */
+            s.Append("Итого: " + order_total);
+            label8.Text = s.ToString();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,9 +133,8 @@ namespace App
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
-        total = izdelie_price * Convert.ToInt32(comboBox2.SelectedIndex);
-        label6.Text = total.ToString();
+            total = izdelie_price * Convert.ToInt32(comboBox2.SelectedIndex);
+            label6.Text = total.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -144,23 +142,49 @@ namespace App
             try
             {
                 connection.Open();
-                Random random = new Random();               
+                           
                 SqlCommand command = new SqlCommand("INSERT INTO [order] ([date], stage, client, manager, price) " +
                     "VALUES (getdate(),@stage,@client,@manager,@price); SELECT SCOPE_IDENTITY(); ", connection);
                 command.Parameters.AddWithValue("@stage", "Новый");
                 command.Parameters.AddWithValue("@client", this.user);
-                command.Parameters.AddWithValue("@manager", "manager"); // from users table
-                command.Parameters.AddWithValue("@price", total); // from users table
+                command.Parameters.AddWithValue("@manager", "manager"); 
+                command.Parameters.AddWithValue("@price", order_total); 
                 
                 int order = Convert.ToInt32(command.ExecuteScalar());
 
-                SqlCommand command1 = new SqlCommand("INSERT INTO order_izdelie (order_id, izdelie_id,counter) " +
-                   "VALUES (" + order + "," + comboBox1.SelectedValue + ", 1);", connection);
-                command1.ExecuteScalar();
-                MessageBox.Show("Ваш заказ N"+ order + "  забронирован!");
-                
-                connection.Close();
+                List<Order> order_unique = new List<Order>();
+               
+                var uniqueNames = cart.Select(c => c.id).Distinct().ToList();
 
+                foreach(int v in uniqueNames)
+                {
+                    double p = 0;
+                    int c = 0;
+                    String n = "";
+                    foreach(Order o in cart)
+                    {
+                        if(v == o.id)
+                        {
+                            p += o.price;
+                            c += o.count;
+                            n = o.name;
+                        }
+                       
+                    }
+                    order_unique.Add(new Order(n, v, c, p));
+
+                }
+
+
+                foreach (Order cart_item in order_unique)
+                {
+          
+                    SqlCommand command1 = new SqlCommand("INSERT INTO order_izdelie (order_id, izdelie_id, counter) " +
+                   " VALUES (" + order + ", " + cart_item.id + ", " + cart_item.count + ") ", connection);
+                    command1.ExecuteScalar();
+                }
+                MessageBox.Show("Ваш заказ N"+ order + "  забронирован!");                
+                connection.Close();
             }
             catch
             {
@@ -169,21 +193,16 @@ namespace App
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-        /* private void combo_SelectedIndexChanged(object sender, EventArgs e)
-         {
-            var test = (ComboBox)sender;
-             var selection = test.Name;
-             MessageBox.Show(selection);
-             switch (selection) {
-                 case "Combobox2":
-                     MessageBox.Show("2");
-                     break;
-                 case "Combobox3":
-                     MessageBox.Show("3");
-                     break;
-             }
-
-         }*/
+        private void button3_Click(object sender, EventArgs e)
+        {
+          
+            cart.RemoveAt(cart.Count()-1);
+            UpdateCart(cart);
+        }
     }
 }
